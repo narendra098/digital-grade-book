@@ -1,0 +1,17 @@
+
+.digital-grade-book {
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-family: Aclonica;
+    color: rgb(245, 244, 244);
+}
+
+.header-menu{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 100px;
+}
+
+.btn {
+    margin-right: 10px;
+}

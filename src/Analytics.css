@@ -1,0 +1,27 @@
+.analytics-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-top: 30px;
+    margin-left: 200px;
+    
+}
+
+.analytics-table td, .analytics-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+
+.analytics-table tr:hover {background-color: #ddd;}
+
+.analytics-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+  }
+
+.showorhide-btn{
+    margin: 30px;
+}
