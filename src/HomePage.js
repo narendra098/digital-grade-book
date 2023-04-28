@@ -6,6 +6,7 @@ import { useState } from "react";
 import StudentData from "./Data";
 import Analytics from "./Analytics";
 
+
 const HomePage = () => {
   const [data, setData] = useState(StudentData);
   const [selectData, setselectData] = useState(StudentData);
@@ -22,7 +23,13 @@ const searchStudents = (event) => {
     }
     else{
     const filteredStudents = data.filter(student => student.Name.toLowerCase().includes(searchName.toLowerCase()));
+    if(filteredStudents.length == 0){
+      setselectData([{}])
+    }
+    else{
     setselectData(filteredStudents);
+    }
+    
   }
 };
 
@@ -143,6 +150,8 @@ const searchStudents = (event) => {
     <ResultTable Studentsdata={selectData} />
 
     <Analytics />
+   
+    
     
     </div>
   );

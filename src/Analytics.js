@@ -2,6 +2,10 @@ import React from 'react'
 import StudentData from "./Data"
 import  "./Analytics.css"
 import { useState } from "react";
+import PieChart from "./PieChart";
+import { Pie } from 'react-chartjs-2';
+import BarChart from './BarChart';
+import "./Button.css"
 
 function Analytics() {
 
@@ -25,18 +29,55 @@ function Analytics() {
   const [showTable, setShowTable] = useState(false);
 
   // Function to toggle the visibility of the table
-  const toggleTable = () => {
-    setShowTable(!showTable);
+  const toggleTable = (e) => {
+      
+      setShowTable(!showTable);
+    
+      e.preventDefault();
+      //reset animation
+      e.target.classList.remove('animate');
+      
+      e.target.classList.add('animate');
+      setTimeout(function(){
+        e.target.classList.remove('animate');
+      },700);
+    
+    
+    var showorhide_btn = document.getElementsByClassName("bubbly-button");
+    
+    for (var i = 0; i < showorhide_btn.length; i++) {
+      showorhide_btn[i].addEventListener('click', toggleTable, false);
+    }
+
   };
 
+  const analytics_data = [{
+    'total_students':totalStudents,
+    'average_score': averageFinalGrade.toFixed(2),
+    'min_score': minFinalGrade,
+    'max_score':maxFinalGrade,
+    'grade_0_to_5':studentsWithFinalGradeBetween0And5.length,
+    'grade_5_to_10':studentsWithFinalGradeBetween5And10.length
+  }]
 
-  
+  const payload = [];
+  analytics_data.forEach(item => {
+      const values = Object.values(item);
+      payload.push(...values);
+    })
+  console.log(payload)
+
   return (
     <div>
-    <center><button className='showorhide-btn' onClick={toggleTable}>{showTable ? "Hide-Analytics" : "Show-Analytics"} Table</button></center>
-    {showTable && (    
-    <div className='analytics-table'>
+      
+    
+    <center><button className='bubbly-button' onClick={toggleTable}>{showTable ? "Hide-Analytics" : "Show-Analytics"} </button></center>
+    <div style={{display:'flex'}}>
+    {showTable && (  
+    <>
 
+    <div className='analytics-table' style={{marginRight:'80px'}}>
+        
         <tr> 
         <th>status</th>
         <th>Count</th>
@@ -72,13 +113,19 @@ function Analytics() {
         <td>Final grade: 5-10</td>
         <td>{studentsWithFinalGradeBetween5And10.length}</td>
         </tr>
-   
-
-
-    </div>
+    
+        
+    </div>  
+    
+    <PieChart payload_data={payload} style={{ marginLeft: '80px' }}/>
+    
+    <BarChart payload_data = {payload} />
+    </>
     )}
   
-  </div>)
+  </div>
+  </div>
+  )
 }
 
 export default Analytics

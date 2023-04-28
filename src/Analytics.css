@@ -9,7 +9,7 @@
 .analytics-table td, .analytics-table th {
     border: 1px solid #ddd;
     padding: 8px;
-  }
+  } 
 
 
 .analytics-table tr:hover {background-color: #ddd;}
@@ -24,4 +24,6 @@
 
 .showorhide-btn{
     margin: 30px;
+    display: flex;
 }
+
